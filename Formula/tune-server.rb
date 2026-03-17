@@ -1,22 +1,22 @@
 class TuneServer < Formula
   desc "Multi-room music server with DLNA/UPnP, AirPlay, and streaming services"
   homepage "https://github.com/renesenses/tune-server-linux"
-  version "0.1.5"
+  version "0.1.6"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/renesenses/tune-server-linux/releases/download/v0.1.5/tune-server-0.1.5-macos.tar.gz"
-      sha256 "b5b8512cc91b645f6603af1e6ab8486ca08546d0ed0d5d8f51ce37b36fcc90e9"
+      url "https://github.com/renesenses/tune-server-linux/releases/download/v0.1.6/tune-server-0.1.6-macos.tar.gz"
+      sha256 "e210f127c50fb1932bd4c9b63d21d92439f38a7893bc5b9fc5e5bd340c53ff6b"
     else
-      url "https://github.com/renesenses/tune-server-linux/releases/download/v0.1.5/tune-server-0.1.5-macos-intel.tar.gz"
-      sha256 "de50098a3beae4111eeea00daf6d327498405153399551aa02710995ccc73d61"
+      url "https://github.com/renesenses/tune-server-linux/releases/download/v0.1.6/tune-server-0.1.6-macos-intel.tar.gz"
+      sha256 "eeb6079f118af97d5670fb1d8babd891611dea887b6293f567f656e64a443195"
     end
   end
 
   on_linux do
-    url "https://github.com/renesenses/tune-server-linux/releases/download/v0.1.5/tune-server-0.1.5-linux.tar.gz"
-    sha256 "b8e2f18f245202755a62cf6be7955e742dde4b13eb0d117acfa00941581172e3"
+    url "https://github.com/renesenses/tune-server-linux/releases/download/v0.1.6/tune-server-0.1.6-linux.tar.gz"
+    sha256 "5b55d577162a07c316272881c1fc9eb928fedeabf5011791b70cebc7e55049cd"
   end
 
   depends_on "python@3.12"
@@ -58,7 +58,7 @@ class TuneServer < Formula
       To start as a background service:
         brew services start tune-server
 
-      Release notes: https://github.com/renesenses/tune-server-linux/releases/tag/v0.1.5
+      Release notes: https://github.com/renesenses/tune-server-linux/releases/tag/v0.1.6
     EOS
   end
 

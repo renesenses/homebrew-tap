@@ -2,7 +2,7 @@ class TuneServer < Formula
   desc "Multi-room music server with DLNA/UPnP, AirPlay, and streaming services"
   homepage "https://mozaiklabs.fr"
   url "https://github.com/renesenses/tune-server-linux/archive/refs/tags/v0.7.97.tar.gz"
-  sha256 "09535cc309ca39a4f07aca4b4ed771809fb221f5bddaf248aea5030b3d8c0020"
+  sha256 "74f58f2c9c870bea7b25d085aa64fb1969b41cd92c785f5d1ad2d7d21770f3d6"
   version "0.7.97"
   license "MIT"
 

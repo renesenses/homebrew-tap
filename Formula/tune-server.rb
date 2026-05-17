@@ -13,7 +13,7 @@ class TuneServer < Formula
 
   resource "web-client" do
     url "https://github.com/renesenses/tune-web-client/archive/refs/tags/v0.7.97.tar.gz"
-    sha256 "d5558cd419c8d46bdc958064cb97f963d1ea793866414c025906ec15033512ed"
+    sha256 "aa622b8d3cb080c727d9210b05a1e296a4788eb70f3f8bcd3d59ac26067c4363"
   end
 
   def install

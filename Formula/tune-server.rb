@@ -1,9 +1,9 @@
 class TuneServer < Formula
   desc "Multi-room music server with DLNA/UPnP, AirPlay, and streaming services"
   homepage "https://mozaiklabs.fr"
-  url "https://github.com/renesenses/tune-server-linux/archive/refs/tags/v0.7.96.tar.gz"
-  sha256 "93e22def0286a44e7880e85d8873f16f6e9ac9b523ff25a44ff550b76e84b704"
-  version "0.7.96"
+  url "https://github.com/renesenses/tune-server-linux/archive/refs/tags/v0.7.97.tar.gz"
+  sha256 "6d1e0095db8c9f08277431a41bf3b7511191b8cf63bef4fb6cbf6d1e6c0aaaa7"
+  version "0.7.97"
   license "MIT"
 
   depends_on "node" => :build
@@ -12,8 +12,8 @@ class TuneServer < Formula
   depends_on "portaudio"
 
   resource "web-client" do
-    url "https://github.com/renesenses/tune-web-client/archive/refs/tags/v0.7.96.tar.gz"
-    sha256 "f3a4795189d8718efa3148f14aedba7f2ec5d9f659a9108324416694590df2b3"
+    url "https://github.com/renesenses/tune-web-client/archive/refs/tags/v0.7.97.tar.gz"
+    sha256 "cdaee824421a43fe7419b15fd949ef3932431f94f571a97a13a6f16eb3288670"
   end
 
   def install
@@ -43,7 +43,7 @@ class TuneServer < Formula
 
   def caveats
     <<~EOS
-      Tune Server v0.7.96 installed!
+      Tune Server v0.7.97 installed!
 
       Start the server:
         tune-server
@@ -57,7 +57,7 @@ class TuneServer < Formula
         Open http://localhost:8888 → Settings → Music Directories
 
       Release notes:
-        https://github.com/renesenses/tune-server-linux/releases/tag/v0.7.96
+        https://github.com/renesenses/tune-server-linux/releases/tag/v0.7.86
     EOS
   end
 

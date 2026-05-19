@@ -57,7 +57,7 @@ class TuneServer < Formula
         Open http://localhost:8888 → Settings → Music Directories
 
       Release notes:
-        https://github.com/renesenses/tune-server-linux/releases/tag/v0.7.86
+        https://github.com/renesenses/tune-server-linux/releases/tag/v0.7.116
     EOS
   end
 

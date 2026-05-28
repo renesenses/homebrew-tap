@@ -28,11 +28,13 @@ class TuneServer < Formula
 
   def install
     bin.install "tune-server"
+    pkgshare.install "web"
 
     (bin/"tune-server-launcher").write <<~EOS
       #!/bin/bash
       export PATH="#{Formula["ffmpeg"].opt_bin}:$PATH"
       export TUNE_PORT="${TUNE_PORT:-8888}"
+      export TUNE_WEB_DIR="#{pkgshare}/web"
       exec "#{bin}/tune-server" "$@"
     EOS
     chmod 0755, bin/"tune-server-launcher"

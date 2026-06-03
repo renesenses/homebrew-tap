@@ -1,7 +1,7 @@
 class TuneServer < Formula
   desc "Multi-room music server (Rust) with DLNA/UPnP, streaming, and web UI"
   homepage "https://mozaiklabs.fr"
-  version "0.8.32"
+  version "0.8.33"
   license "MIT"
 
   on_macos do

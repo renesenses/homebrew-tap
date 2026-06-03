@@ -6,21 +6,21 @@ class TuneServer < Formula
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.35/tune-server-v0.8.35-macos-aarch64.tar.gz"
-      sha256 "28bc9554890d910444e20a3d82fd04ec90ff9f30f8c4b3aee100c9b1ba9f0d8a"
+      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.36/tune-server-v0.8.36-macos-aarch64.tar.gz"
+      sha256 "bb1911039e8cbc43f355ce4663ad05718bd7fb2351d661bbe80ad7aeec9709a4"
     else
-      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.35/tune-server-v0.8.35-macos-x86_64.tar.gz"
-      sha256 "bc2a03a1b850d1253c699a3363a918bbae3dfb2aeb9d507339abf5407bf9090f"
+      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.36/tune-server-v0.8.36-macos-x86_64.tar.gz"
+      sha256 "d6e14cac48332fab0ec67f83775e8cf763742020e5a82fb60cf3deb48ea572c9"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.35/tune-server-v0.8.35-linux-aarch64.tar.gz"
-      sha256 "30582f09edbf53c88c75aa39d350a696447ec28a2795209c5ed383f1b91045a1"
+      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.36/tune-server-v0.8.36-linux-aarch64.tar.gz"
+      sha256 "625fd8f606f8123e4e7aba8ce128ebf78459c1a15151505ce894292a3ff68094"
     else
-      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.35/tune-server-v0.8.35-linux-x86_64.tar.gz"
-      sha256 "2f85f8a04696a47268f7fc7e74ace2e61dfde486f361572ac39cbd07353307c8"
+      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.36/tune-server-v0.8.36-linux-x86_64.tar.gz"
+      sha256 "9ade0e8ebb2c8ae1f150dec615006df5f569066e0a115ba33be209dd05854f6e"
     end
   end
 
@@ -47,7 +47,7 @@ class TuneServer < Formula
 
   def caveats
     <<~EOS
-      Tune Server v0.8.35 (Rust) installed!
+      Tune Server v0.8.36 (Rust) installed!
 
       Start: tune-server-launcher
       Web UI: http://localhost:8888

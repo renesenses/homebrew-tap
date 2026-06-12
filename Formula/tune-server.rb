@@ -24,8 +24,6 @@ class TuneServer < Formula
     end
   end
 
-  depends_on "ffmpeg"
-
   def install
     bin.install "tune-server"
     pkgshare.install "web"

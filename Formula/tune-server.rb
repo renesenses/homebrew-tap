@@ -6,21 +6,21 @@ class TuneServer < Formula
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.99/tune-server-v0.8.90-macos-aarch64.tar.gz"
-      sha256 "eb88be3b6331c5180ee760d4465f41a9844b637db762b75eeb39649d6294b507"
+      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.99/tune-server-v0.8.99-macos-aarch64.tar.gz"
+      sha256 "42063d579894eb7716274ee954c41eadec86b286cd9cf1adbb62bce5686d4a57"
     else
-      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.99/tune-server-v0.8.90-macos-x86_64.tar.gz"
-      sha256 "077cf928e5a11f552496cad9ce81576981fc0c95282afcf0ea7ca9f3f7ac4fbf"
+      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.99/tune-server-v0.8.99-macos-x86_64.tar.gz"
+      sha256 "454dcfaf8dc4e91b3a21fe445a1ff1b04b2c1ef27d69b9d64f9c14d9aa8f0573"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.99/tune-server-v0.8.90-linux-aarch64.tar.gz"
-      sha256 "8b4b29a65fa4110e517aea2fbcfdf667a7550488d6cb2deadcddea7ae8732f50"
+      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.99/tune-server-v0.8.99-linux-aarch64.tar.gz"
+      sha256 "058df8dd0f8f48f53316e16a1e1340de57654f59105c973c946ca29a8b81cef1"
     else
-      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.99/tune-server-v0.8.90-linux-x86_64.tar.gz"
-      sha256 "840244c9d67cbe9e85851604454ee1051b3c380c688b5f8c8be56d5bfd6ef8e0"
+      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.99/tune-server-v0.8.99-linux-x86_64.tar.gz"
+      sha256 "35388d406c716a441804fafb7a67bbe7e91d020937fd945b029187bde1e95770"
     end
   end
 

@@ -3,7 +3,7 @@ class TuneServer < Formula
   homepage "https://mozaiklabs.fr"
   url "https://github.com/renesenses/tune-server-linux/archive/refs/tags/v0.8.125.tar.gz"
   sha256 "28f93b8448993bf0e5f5abc9db368de6ebc245478ace02050a2da2fa4fad7767"
-  version "0.8.125"
+  version "0.8.126"
   license "MIT"
 
   depends_on "node" => :build
@@ -43,7 +43,7 @@ class TuneServer < Formula
 
   def caveats
     <<~EOS
-      Tune Server v0.8.125 installed!
+      Tune Server v0.8.126 installed!
 
       Start the server:
         tune-server

@@ -1,39 +1,40 @@
 class TuneServer < Formula
-  desc "Multi-room music server with DLNA/UPnP, AirPlay, and streaming services"
+  desc "Multi-room music server (Rust) with DLNA/UPnP, streaming, and web UI"
   homepage "https://mozaiklabs.fr"
-  url "https://github.com/renesenses/tune-server-linux/archive/refs/tags/v0.8.125.tar.gz"
-  sha256 "28f93b8448993bf0e5f5abc9db368de6ebc245478ace02050a2da2fa4fad7767"
   version "0.8.126"
   license "MIT"
 
-  depends_on "node" => :build
-  depends_on "python@3.11"
-  depends_on "ffmpeg"
-  depends_on "portaudio"
+  on_macos do
+    if Hardware::CPU.arm?
+      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.126/tune-server-v0.8.126-macos-aarch64.tar.gz"
+      sha256 "8a2a9caae6767b7c48027db28749add09e723d6ffec2ad41e773b43dcea95697"
+    else
+      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.126/tune-server-v0.8.126-macos-x86_64.tar.gz"
+      sha256 "96a47b49d106e035d4f38dd88b96b56e37bf1132de8de9ce408b0d66c86650f0"
+    end
+  end
 
-  resource "web-client" do
-    url "https://github.com/renesenses/tune-web-client/archive/refs/tags/v0.8.125.tar.gz"
-    sha256 "d882d5d40783a5ca69bfcadd21874ead989ad2445ef605bd80e5d8d1bd1fea11"
+  on_linux do
+    if Hardware::CPU.arm?
+      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.126/tune-server-v0.8.126-linux-aarch64.tar.gz"
+      sha256 "aa1dcdd0821f431a977b000f8c7d0ff49879268fe65ccc202f46c27e597df354"
+    else
+      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.126/tune-server-v0.8.126-linux-x86_64.tar.gz"
+      sha256 "da44da5bc32d61012fed56be7134c63252af1527d3ec43282ed6f10a89cbf0ba"
+    end
   end
 
   def install
-    venv = libexec/"venv"
-    system Formula["python@3.11"].opt_bin/"python3.11", "-m", "venv", venv
-    system venv/"bin/pip", "install", "--no-cache-dir", "."
+    bin.install "tune-server"
+    pkgshare.install "web"
 
-    resource("web-client").stage do
-      system "npm", "install"
-      system "npm", "run", "build"
-      (libexec/"web").install Dir["dist/*"]
-    end
-
-    (bin/"tune-server").write <<~EOS
+    (bin/"tune-server-launcher").write <<~EOS
       #!/bin/bash
-      export PATH="#{Formula["ffmpeg"].opt_bin}:$PATH"
-      export TUNE_WEB_DIR="#{libexec}/web"
-      exec "#{venv}/bin/tune-server" "$@"
+      export TUNE_PORT="${TUNE_PORT:-8888}"
+      export TUNE_WEB_DIR="#{pkgshare}/web"
+      exec "#{bin}/tune-server" "$@"
     EOS
-    chmod 0755, bin/"tune-server"
+    chmod 0755, bin/"tune-server-launcher"
   end
 
   def post_install
@@ -43,26 +44,19 @@ class TuneServer < Formula
 
   def caveats
     <<~EOS
-      Tune Server v0.8.126 installed!
+      Tune Server v0.8.126 (Rust) installed!
 
-      Start the server:
-        tune-server
+      Start: tune-server-launcher
+      Web UI: http://localhost:8888
 
-      Then open http://localhost:8888 in your browser.
+      Background service: brew services start tune-server
 
-      Start as a background service:
-        brew services start tune-server
-
-      Configure music directories:
-        Open http://localhost:8888 → Settings → Music Directories
-
-      Release notes:
-        https://github.com/renesenses/tune-server-linux/releases/tag/v0.7.86
+      Legacy Python version: brew install renesenses/tap/tune-server-python
     EOS
   end
 
   service do
-    run [opt_bin/"tune-server"]
+    run [opt_bin/"tune-server-launcher"]
     working_dir var/"tune-server"
     keep_alive true
     log_path var/"log/tune-server.log"
@@ -71,6 +65,6 @@ class TuneServer < Formula
   end
 
   test do
-    assert_match "tune", shell_output("#{bin}/tune-server --help 2>&1", 0)
+    assert_match version.to_s, shell_output("#{bin}/tune-server --version 2>&1", 0)
   end
 end

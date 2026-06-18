@@ -31,8 +31,8 @@ class TuneServer < Formula
     (bin/"tune-server-launcher").write <<~EOS
       #!/bin/bash
       export TUNE_PORT="${TUNE_PORT:-8888}"
-      export TUNE_WEB_DIR="#{pkgshare}/web"
-      exec "#{bin}/tune-server" "$@"
+      export TUNE_WEB_DIR="#{opt_pkgshare}/web"
+      exec "#{opt_bin}/tune-server" "$@"
     EOS
     chmod 0755, bin/"tune-server-launcher"
   end

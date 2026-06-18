@@ -28,13 +28,14 @@ class TuneServer < Formula
     bin.install "tune-server"
     pkgshare.install "web"
 
-    (bin/"tune-server-launcher").write <<~EOS
+    (bin/"tune-server-launcher").write <<~'BASH'
       #!/bin/bash
       export TUNE_PORT="${TUNE_PORT:-8888}"
-      FORMULA_PREFIX="$(brew --prefix tune-server 2>/dev/null || echo /opt/homebrew/opt/tune-server)"
-      export TUNE_WEB_DIR="${FORMULA_PREFIX}/share/tune-server/web"
-      exec "${FORMULA_PREFIX}/bin/tune-server" "$@"
-    EOS
+      SELF_DIR="$(cd "$(dirname "$0")" && pwd)"
+      PREFIX="$(dirname "$SELF_DIR")"
+      export TUNE_WEB_DIR="${PREFIX}/share/tune-server/web"
+      exec "${SELF_DIR}/tune-server" "$@"
+    BASH
     chmod 0755, bin/"tune-server-launcher"
   end
 

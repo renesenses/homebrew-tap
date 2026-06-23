@@ -1,26 +1,26 @@
 class TuneServer < Formula
   desc "Multi-room music server (Rust) with DLNA/UPnP, streaming, and web UI"
   homepage "https://mozaiklabs.fr"
-  version "0.8.157"
+  version "0.8.158"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.157/tune-server-v0.8.157-macos-aarch64.tar.gz"
-      sha256 "d4f0d75b22924d7d98d2c52bf913d741088864afcb3d807294ad8e307e00dcc3"
+      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.158/tune-server-v0.8.158-macos-aarch64.tar.gz"
+      sha256 "378d4514e230f1be52f1bad46fc639e0de72ba20be6703a76048d03486415e34"
     else
-      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.157/tune-server-v0.8.157-macos-x86_64.tar.gz"
+      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.158/tune-server-v0.8.158-macos-x86_64.tar.gz"
       sha256 "9ff06afced2905008e30ad563eed7464a3c0ed0f93f4c2e1cef1c85b64ad02cd"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.157/tune-server-v0.8.157-linux-aarch64.tar.gz"
+      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.158/tune-server-v0.8.158-linux-aarch64.tar.gz"
       sha256 "1e32a14d10400119b8e68bf5e05ecca50efb04c21e74131eaa2227481da21169"
     else
-      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.157/tune-server-v0.8.157-linux-x86_64.tar.gz"
-      sha256 "6e7c6faa01d9785d9c5b2664a4aea3d81efeb56575e3b1e1aca5bbfc2aaa697c"
+      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.158/tune-server-v0.8.158-linux-x86_64.tar.gz"
+      sha256 "772912cee2848f78de3465837e7acd39eca0af862c50fd22d8ae429f586dda1e"
     end
   end
 
@@ -46,7 +46,7 @@ class TuneServer < Formula
 
   def caveats
     <<~EOS
-      Tune Server v0.8.157 (Rust) installed!
+      Tune Server v0.8.158 (Rust) installed!
 
       Start: tune-server-launcher
       Web UI: http://localhost:8888

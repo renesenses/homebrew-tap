@@ -10,7 +10,7 @@ class TuneServer < Formula
       sha256 "378d4514e230f1be52f1bad46fc639e0de72ba20be6703a76048d03486415e34"
     else
       url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.158/tune-server-v0.8.158-macos-x86_64.tar.gz"
-      sha256 "9ff06afced2905008e30ad563eed7464a3c0ed0f93f4c2e1cef1c85b64ad02cd"
+      sha256 "b95e0b234c2bbac15480051746d0e24dce466999578b1612f43e7925c0ad3d5d"
     end
   end
 

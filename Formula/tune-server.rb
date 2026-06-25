@@ -1,26 +1,26 @@
 class TuneServer < Formula
   desc "Multi-room music server (Rust) with DLNA/UPnP, streaming, and web UI"
   homepage "https://mozaiklabs.fr"
-  version "0.8.170"
+  version "0.8.171"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.170/tune-server-v0.8.170-macos-aarch64.tar.gz"
-      sha256 "543510357968356e33ff98bbf71853e2c642dd250d381fb1a813e103751ed403"
+      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.171/tune-server-v0.8.171-macos-aarch64.tar.gz"
+      sha256 "a4dce0307ca2f2acb4fc0ba8b94bdb90cc8962297bf4c0507e508853b53cad04"
     else
-      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.170/tune-server-v0.8.170-macos-x86_64.tar.gz"
-      sha256 "e3b87b8915c11203f61e50aa97b08dbf77126c0fe053f041a56f09a1ed650b19"
+      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.171/tune-server-v0.8.171-macos-x86_64.tar.gz"
+      sha256 "7a348e3792ce6fdae5535504c25fa8223a43935f2095095ceaf4dab09e07a7a2"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.170/tune-server-v0.8.170-linux-aarch64.tar.gz"
+      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.171/tune-server-v0.8.171-linux-aarch64.tar.gz"
       sha256 "0000000000000000000000000000000000000000000000000000000000000003"
     else
-      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.170/tune-server-v0.8.170-linux-x86_64.tar.gz"
-      sha256 "ef3b2b84cee0c0393c6fb02f70a6cf7cdaf6ef8a776f2c6aed14721fd7bd5d46"
+      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.171/tune-server-v0.8.171-linux-x86_64.tar.gz"
+      sha256 "841ea6f243d0c7aee5b52b0780246de19b2511d53209e0aeb53aa8bce08b47df"
     end
   end
 
@@ -46,7 +46,7 @@ class TuneServer < Formula
 
   def caveats
     <<~EOS
-      Tune Server v0.8.170 (Rust) installed!
+      Tune Server v0.8.171 (Rust) installed!
 
       Start: tune-server-launcher
       Web UI: http://localhost:8888

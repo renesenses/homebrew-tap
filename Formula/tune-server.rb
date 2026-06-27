@@ -1,26 +1,26 @@
 class TuneServer < Formula
   desc "Multi-room music server (Rust) with DLNA/UPnP, streaming, and web UI"
   homepage "https://mozaiklabs.fr"
-  version "0.8.192"
+  version "0.8.193"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.192/tune-server-v0.8.192-macos-aarch64.tar.gz"
-      sha256 "3dab2ddba3dd2ca58bcbb20e24ebd01def19a9f5feeb6da70b707c31d003a83b"
+      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.193/tune-server-v0.8.193-macos-aarch64.tar.gz"
+      sha256 "6fdcea21f39829b728bf06972854070eb512800ca9274d149e7760f85fee3c7a"
     else
-      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.192/tune-server-v0.8.192-macos-x86_64.tar.gz"
+      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.193/tune-server-v0.8.193-macos-x86_64.tar.gz"
       sha256 "c63c258a8c20863209a784208414c53f3a79c6039146535ac71fa4c15e2a1465"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.192/tune-server-v0.8.192-linux-aarch64.tar.gz"
+      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.193/tune-server-v0.8.193-linux-aarch64.tar.gz"
       sha256 "NO_ARM_LINUX_BUILD"
     else
-      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.192/tune-server-v0.8.192-linux-x86_64.tar.gz"
-      sha256 "32b5d7cd772d5963cbb6ea75e36e441fde6fbe445fc8df6833e2d2cac14f55c0"
+      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.193/tune-server-v0.8.193-linux-x86_64.tar.gz"
+      sha256 "159cb3ffccc3c34246ad506c27867f70de83c557902b24898022d675801356dc"
     end
   end
 
@@ -46,7 +46,7 @@ class TuneServer < Formula
 
   def caveats
     <<~EOS
-      Tune Server v0.8.192 (Rust) installed!
+      Tune Server v0.8.193 (Rust) installed!
 
       Start: tune-server-launcher
       Web UI: http://localhost:8888

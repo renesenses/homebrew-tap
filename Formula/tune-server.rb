@@ -17,7 +17,7 @@ class TuneServer < Formula
   on_linux do
     if Hardware::CPU.arm?
       url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.201/tune-server-v0.8.201-linux-aarch64.tar.gz"
-      sha256 "NO_ARM_LINUX_BUILD"
+      sha256 "ec2dcbe521be18059eb2f60b8fd928ac7f475e817886bebaf764354ef97ce0bf"
     else
       url "https://github.com/renesenses/tune-server-rust/releases/download/v0.8.201/tune-server-v0.8.201-linux-x86_64.tar.gz"
       sha256 "3a6ae2785887c5e7a4377eaaefe6f373544399c135f41b1fbcd484e4810c71b5"

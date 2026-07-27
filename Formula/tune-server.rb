@@ -41,6 +41,22 @@ class TuneServer < Formula
   def post_install
     (var/"tune-server").mkpath
     (var/"tune-server/artwork_cache").mkpath
+
+    # Installing over a running server leaves it executing a binary that no
+    # longer matches what is on disk. macOS then stops recognising the process
+    # and the kernel drops every connection it makes to the local network
+    # (`tcp drop outgoing ... reason: NECP`, EHOSTUNREACH) while its internet
+    # traffic keeps flowing — so DLNA and AirPlay devices go silent with no
+    # obvious cause, and nothing but a restart brings them back.
+    return unless OS.mac?
+
+    # No guard on the plist existing: Homebrew points HOME at a scratch
+    # directory during install, so probing ~/Library/LaunchAgents here finds
+    # nothing even when the service is installed. kickstart -k simply fails when
+    # the job is not loaded, and quiet_system keeps that from failing the
+    # install.
+    quiet_system "/bin/launchctl", "kickstart", "-k",
+                 "gui/#{Process.uid}/homebrew.mxcl.tune-server"
   end
 
   def caveats
@@ -51,6 +67,12 @@ class TuneServer < Formula
       Web UI: http://localhost:8888
 
       Background service: brew services start tune-server
+
+      If the service was already running, this install restarted it. Should your
+      DLNA or AirPlay devices stop responding after an upgrade, macOS has tied
+      its local-network permission to the previous binary — run:
+
+        brew services restart tune-server
 
       Legacy Python version: brew install renesenses/tap/tune-server-python
     EOS

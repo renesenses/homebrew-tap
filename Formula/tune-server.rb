@@ -6,21 +6,21 @@ class TuneServer < Formula
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.9.18/tune-server-v0.9.18-macos-aarch64.tar.gz"
-      sha256 "e3bf2fdd007bb2d624363bae14363253884ec235bdbc733136992c19768358d6"
+      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.9.18/tune-server-v0.8.90-macos-aarch64.tar.gz"
+      sha256 "eb88be3b6331c5180ee760d4465f41a9844b637db762b75eeb39649d6294b507"
     else
-      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.9.18/tune-server-v0.9.18-macos-x86_64.tar.gz"
-      sha256 "ae02833878c2ac5bf97baf24430dfef850d0f39a993c05723b023d99db4fa8ed"
+      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.9.18/tune-server-v0.8.90-macos-x86_64.tar.gz"
+      sha256 "077cf928e5a11f552496cad9ce81576981fc0c95282afcf0ea7ca9f3f7ac4fbf"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.9.18/tune-server-v0.9.18-linux-aarch64.tar.gz"
-      sha256 "03c747b74a0bd1bbca9feda79906f3505f72ff1a8a9b3abcd14b112f738a871a"
+      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.9.18/tune-server-v0.8.90-linux-aarch64.tar.gz"
+      sha256 "8b4b29a65fa4110e517aea2fbcfdf667a7550488d6cb2deadcddea7ae8732f50"
     else
-      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.9.18/tune-server-v0.9.18-linux-x86_64.tar.gz"
-      sha256 "2161c3a468ea0aa2472fade01e64143a4beb9d16a1f74af8a441436e487d2ea4"
+      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.9.18/tune-server-v0.8.90-linux-x86_64.tar.gz"
+      sha256 "840244c9d67cbe9e85851604454ee1051b3c380c688b5f8c8be56d5bfd6ef8e0"
     end
   end
 
@@ -41,22 +41,6 @@ class TuneServer < Formula
   def post_install
     (var/"tune-server").mkpath
     (var/"tune-server/artwork_cache").mkpath
-
-    # Installing over a running server leaves it executing a binary that no
-    # longer matches what is on disk. macOS then stops recognising the process
-    # and the kernel drops every connection it makes to the local network
-    # (`tcp drop outgoing ... reason: NECP`, EHOSTUNREACH) while its internet
-    # traffic keeps flowing — so DLNA and AirPlay devices go silent with no
-    # obvious cause, and nothing but a restart brings them back.
-    return unless OS.mac?
-
-    # No guard on the plist existing: Homebrew points HOME at a scratch
-    # directory during install, so probing ~/Library/LaunchAgents here finds
-    # nothing even when the service is installed. kickstart -k simply fails when
-    # the job is not loaded, and quiet_system keeps that from failing the
-    # install.
-    quiet_system "/bin/launchctl", "kickstart", "-k",
-                 "gui/#{Process.uid}/homebrew.mxcl.tune-server"
   end
 
   def caveats
@@ -67,12 +51,6 @@ class TuneServer < Formula
       Web UI: http://localhost:8888
 
       Background service: brew services start tune-server
-
-      If the service was already running, this install restarted it. Should your
-      DLNA or AirPlay devices stop responding after an upgrade, macOS has tied
-      its local-network permission to the previous binary — run:
-
-        brew services restart tune-server
 
       Legacy Python version: brew install renesenses/tap/tune-server-python
     EOS

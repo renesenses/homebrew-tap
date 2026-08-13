@@ -52,6 +52,9 @@ class TuneServer < Formula
 
       Background service: brew services start tune-server
 
+      Après une mise à jour, redémarrez le serveur :
+      brew services restart tune-server (ou relancez tune-server-launcher).
+
       Legacy Python version: brew install renesenses/tap/tune-server-python
     EOS
   end

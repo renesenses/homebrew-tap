@@ -1,26 +1,26 @@
 class TuneServer < Formula
   desc "Multi-room music server (Rust) with DLNA/UPnP, streaming, and web UI"
   homepage "https://mozaiklabs.fr"
-  version "0.9.96"
+  version "0.9.97"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.9.96/tune-server-v0.9.96-macos-aarch64.tar.gz"
-      sha256 "f73bd24ac673699b08566627217a5c2f989b01ad57e14033f3ea13de3cb7d425"
+      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.9.97/tune-server-v0.9.97-macos-aarch64.tar.gz"
+      sha256 "780236f27eb008fbcfe214c3cf408dff431faa35628e91d2be30183197c36c96"
     else
-      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.9.96/tune-server-v0.9.96-macos-x86_64.tar.gz"
-      sha256 "1b2bd8ce424023530d1ad73e2c6d7a3286f3914fbb6a9ad5b6760d5026fd6706"
+      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.9.97/tune-server-v0.9.97-macos-x86_64.tar.gz"
+      sha256 "cbd292743206de5966fe614df98932f34157d6e5c18500728259dd38507db936"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.9.96/tune-server-v0.9.96-linux-aarch64.tar.gz"
-      sha256 "18a6f7e4985f2e160ac21969012e1aec0375ceb0bd5a4a922a181847b84f3916"
+      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.9.97/tune-server-v0.9.97-linux-aarch64.tar.gz"
+      sha256 "9b54b5c2714086d50b97ffee69233c03f8fc165071a8fade7837927bcb26728d"
     else
-      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.9.96/tune-server-v0.9.96-linux-x86_64.tar.gz"
-      sha256 "1637a1a4f52ac9a8f653ddc3897738b0ff61f6e9653a6acb7a714a583da83026"
+      url "https://github.com/renesenses/tune-server-rust/releases/download/v0.9.97/tune-server-v0.9.97-linux-x86_64.tar.gz"
+      sha256 "98a26304e76d3f894f7c342f4d9951dcae7a505f0a9e148b89cea1c76e36bbde"
     end
   end
 
@@ -45,7 +45,7 @@ class TuneServer < Formula
 
   def caveats
     <<~EOS
-      Tune Server v0.9.96 (Rust) installed!
+      Tune Server v0.9.97 (Rust) installed!
 
       Start: tune-server-launcher
       Web UI: http://localhost:8888

@@ -32,8 +32,16 @@ class TuneServer < Formula
       #!/bin/bash
       export PATH="#{Formula["ffmpeg"].opt_bin}:$PATH"
       export TUNE_PORT="${TUNE_PORT:-8888}"
-      export TUNE_WEB_DIR="#{pkgshare}/web"
-      exec "#{bin}/tune-server" "$@"
+      # opt_* et non pkgshare/bin : ces chemins sont ecrits EN DUR dans le
+      # lanceur au moment de l'installation. `pkgshare` designe le Cellar
+      # VERSIONNE (…/tune-server/0.9.71/share/…), donc un lanceur survivant a
+      # une mise a jour continue de pointer sur l'ancienne version. Vecu : un
+      # serveur 0.9.110 servant l'interface web de 0.9.71 — 39 versions
+      # d'ecart sur le contrat client/serveur. `opt_pkgshare` et `opt_bin`
+      # passent par le lien stable /opt/homebrew/opt/tune-server, qui suit
+      # toujours la version courante.
+      export TUNE_WEB_DIR="#{opt_pkgshare}/web"
+      exec "#{opt_bin}/tune-server" "$@"
     EOS
     chmod 0755, bin/"tune-server-launcher"
   end

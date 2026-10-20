@@ -26,7 +26,15 @@ class TuneServer < Formula
 
   def install
     bin.install "tune-server"
+    # Aide AirPlay 2 : le serveur la cherche d'abord a cote de son executable
+    # (resolve_daemon_path). Sans elle, la zone AirPlay 2 est sautee
+    # (forum, fil 1612). Absente de l'archive linux-aarch64.
+    bin.install "airplay-daemon" if File.exist?("airplay-daemon")
     pkgshare.install "web"
+    # Greffons livres (party, playlists-converter). Copies vers var au
+    # post_install : le dossier des greffons doit survivre aux mises a jour,
+    # car les greffons installes depuis le catalogue y sont ecrits aussi.
+    (pkgshare/"plugins").install Dir["plugins/*"] if File.directory?("plugins")
 
     (bin/"tune-server-launcher").write <<~EOS
       #!/bin/bash
@@ -41,6 +49,7 @@ class TuneServer < Formula
       # passent par le lien stable /opt/homebrew/opt/tune-server, qui suit
       # toujours la version courante.
       export TUNE_WEB_DIR="#{opt_pkgshare}/web"
+      export TUNE_PLUGINS_DIR="${TUNE_PLUGINS_DIR:-#{var}/tune-server/plugins}"
       exec "#{opt_bin}/tune-server" "$@"
     EOS
     chmod 0755, bin/"tune-server-launcher"
@@ -49,6 +58,16 @@ class TuneServer < Formula
   def post_install
     (var/"tune-server").mkpath
     (var/"tune-server/artwork_cache").mkpath
+    # Les greffons livres sont remis a jour a chaque installation ; les
+    # greffons ajoutes depuis le catalogue (autres dossiers) restent en place.
+    plugins = var/"tune-server/plugins"
+    plugins.mkpath
+    if (opt_pkgshare/"plugins").directory?
+      (opt_pkgshare/"plugins").children.each do |src|
+        rm_r plugins/src.basename if (plugins/src.basename).exist?
+        cp_r src, plugins
+      end
+    end
   end
 
   def caveats

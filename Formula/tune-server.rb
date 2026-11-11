@@ -4,6 +4,12 @@ class TuneServer < Formula
   version "1.0.0-rc11"
   license "MIT"
 
+  # fpcalc (Chromaprint) : empreinte sonore de l'identification AcoustID
+  # (Bibliotheque > Enrichissement). Sans lui : « the fpcalc tool (Chromaprint)
+  # is not installed on the server » (tune-server-rust#8466, fil 2764). Le
+  # service le trouve dans HOMEBREW_PREFIX/bin (std_service_path_env).
+  depends_on "chromaprint"
+
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/renesenses/tune-server-rust/releases/download/v1.0.0-rc11/tune-server-v1.0.0-rc11-macos-aarch64.tar.gz"

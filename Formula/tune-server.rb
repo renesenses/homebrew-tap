@@ -71,7 +71,7 @@ class TuneServer < Formula
   end
 
   def caveats
-    <<~EOS
+    texte = <<~EOS
       Tune Server v1.0.0-rc12 (Rust) installed!
 
       Start: tune-server-launcher
@@ -84,6 +84,27 @@ class TuneServer < Formula
 
       Legacy Python version: brew install renesenses/tap/tune-server-python
     EOS
+    # #8477 : avec le pare-feu macOS actif, un lecteur reseau (DLNA/UPnP,
+    # WiiM...) vient chercher le flux sur ce serveur : connexion ENTRANTE.
+    # L'autorisation donnee a l'app « Tune Server » du DMG ne couvre pas ce
+    # binaire (autre chemin, dans le Cellar versionne), et un service lance
+    # par launchd n'affiche pas toujours la demande d'autorisation : la
+    # decouverte marche, le lecteur recoit le titre, puis s'arrete sans son.
+    # post_install ne peut pas poser l'exception (il faut sudo) : on la donne.
+    if OS.mac?
+      texte += <<~EOS
+
+        macOS firewall: network players (DLNA/UPnP, e.g. WiiM) must connect
+        back to this server to fetch the audio. If the firewall is on, allow
+        the Homebrew binary (the rule of the "Tune Server" app from the DMG
+        does not cover it), then restart the service. Repeat after each
+        upgrade, as the binary path changes:
+          sudo /usr/libexec/ApplicationFirewall/socketfilterfw --add "$(realpath #{opt_bin}/tune-server)"
+          sudo /usr/libexec/ApplicationFirewall/socketfilterfw --unblockapp "$(realpath #{opt_bin}/tune-server)"
+          brew services restart tune-server
+      EOS
+    end
+    texte
   end
 
   service do
